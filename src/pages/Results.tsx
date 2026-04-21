@@ -10,12 +10,13 @@ import { Award, BarChart3, Target, Trophy } from "lucide-react";
 
 export default function Results() {
   const { currentUser, results, exams, users } = useApp();
-  if (!currentUser) return null;
-
   const visible = useMemo(() => {
+    if (!currentUser) return [];
     if (currentUser.role === "student") return results.filter((r) => r.studentId === currentUser.id);
     return results;
   }, [results, currentUser]);
+
+  if (!currentUser) return null;
 
   const totalScore = visible.reduce((a, r) => a + r.score, 0);
   const totalMax = visible.reduce((a, r) => a + r.total, 0);

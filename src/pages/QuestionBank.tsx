@@ -41,8 +41,7 @@ export default function QuestionBank() {
   const [editing, setEditing] = useState<Question | null>(null);
   const [form, setForm] = useState(emptyForm);
 
-  if (!currentUser) return null;
-  const canManage = currentUser.role === "admin" || currentUser.role === "teacher";
+  const canManage = currentUser?.role === "admin" || currentUser?.role === "teacher";
 
   const filtered = useMemo(() => {
     return questions.filter((q) => {
@@ -52,6 +51,8 @@ export default function QuestionBank() {
       return true;
     });
   }, [questions, subject, diff, query]);
+
+  if (!currentUser) return null;
 
   const openAdd = () => {
     setEditing(null);

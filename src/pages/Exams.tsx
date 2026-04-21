@@ -23,8 +23,7 @@ export default function Exams() {
   const [filter, setFilter] = useState<"All" | "Live" | "Upcoming" | "Completed">("All");
   const [viewing, setViewing] = useState<Exam | null>(null);
 
-  if (!currentUser) return null;
-  const role = currentUser.role;
+  const role = currentUser?.role;
 
   const filtered = useMemo(() => {
     return exams.filter((e) => {
@@ -33,6 +32,8 @@ export default function Exams() {
       return true;
     });
   }, [exams, filter, query]);
+
+  if (!currentUser || !role) return null;
 
   const handleStart = (e: Exam) => {
     if (e.questionIds.length === 0) {
