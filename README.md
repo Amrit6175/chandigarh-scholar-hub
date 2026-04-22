@@ -1,3 +1,1 @@
-# Welcome to your Lovable project
-
-TODO: Document your project here
+ONLINE EXAM SYTEM WHERE STUDENT DO EXAM AND ADMIN , TEACHER CREATE AND DELETE EXAM 
